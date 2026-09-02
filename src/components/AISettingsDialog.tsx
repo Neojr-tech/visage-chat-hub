@@ -51,10 +51,18 @@ export function AISettingsDialog({
   };
 
   const submit = () => {
-    if (!draft.baseUrl.trim()) return toast.error("Informe a URL de conexão do provedor.");
-    if (!draft.model.trim()) return toast.error("Informe o modelo que será usado.");
-    if (preset.requiresKey && !draft.apiKey.trim())
-      return toast.error(`${preset.label} exige uma chave de API.`);
+    if (!draft.baseUrl.trim()) {
+      toast.error("Informe a URL de conexão do provedor.");
+      return;
+    }
+    if (!draft.model.trim()) {
+      toast.error("Informe o modelo que será usado.");
+      return;
+    }
+    if (preset.requiresKey && !draft.apiKey.trim()) {
+      toast.error(`${preset.label} exige uma chave de API.`);
+      return;
+    }
     save(draft);
     toast.success("Configurações de IA salvas");
     onOpenChange(false);
