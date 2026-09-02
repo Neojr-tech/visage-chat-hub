@@ -27,7 +27,12 @@ const NAV = [
   { to: "/upgrades", label: "Upgrades", icon: Crown },
 ] as const;
 
-const TABS = [NAV[0], NAV[1], NAV[2], NAV[3]] as const;
+const TABS = [
+  { ...NAV[0], short: "Galeria" },
+  { ...NAV[1], short: "Conversas" },
+  { ...NAV[2], short: "Criar" },
+  { ...NAV[3], short: "Perfil" },
+] as const;
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {
   return (
@@ -119,7 +124,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Tabs — mobile */}
       {!immersive && (
         <nav className="glass-panel fixed inset-x-0 bottom-0 z-30 grid grid-cols-4 border-t border-glass-border px-2 py-2 lg:hidden">
-          {TABS.map(({ to, label, icon: Icon }) => (
+          {TABS.map(({ to, short, icon: Icon }) => (
             <Link
               key={to}
               to={to}
@@ -127,7 +132,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="flex flex-col items-center gap-1 rounded-xl py-1.5 text-[11px] font-medium text-muted-foreground data-[status=active]:text-primary"
             >
               <Icon className="h-5 w-5" />
-              <span className="truncate">{label.split(" ").pop()}</span>
+              <span className="truncate">{short}</span>
             </Link>
           ))}
         </nav>
