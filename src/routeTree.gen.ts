@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConversasRouteImport } from './routes/conversas'
+import { Route as CriarRouteImport } from './routes/criar'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as PersonaRouteImport } from './routes/persona'
+import { Route as UpgradesRouteImport } from './routes/upgrades'
+import { Route as AvatarAvatarIdRouteImport } from './routes/avatar.$avatarId'
+import { Route as ChatAvatarIdRouteImport } from './routes/chat.$avatarId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConversasRoute = ConversasRouteImport.update({
+  id: '/conversas',
+  path: '/conversas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CriarRoute = CriarRouteImport.update({
+  id: '/criar',
+  path: '/criar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonaRoute = PersonaRouteImport.update({
+  id: '/persona',
+  path: '/persona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpgradesRoute = UpgradesRouteImport.update({
+  id: '/upgrades',
+  path: '/upgrades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvatarAvatarIdRoute = AvatarAvatarIdRouteImport.update({
+  id: '/avatar/$avatarId',
+  path: '/avatar/$avatarId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatAvatarIdRoute = ChatAvatarIdRouteImport.update({
+  id: '/chat/$avatarId',
+  path: '/chat/$avatarId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conversas': typeof ConversasRoute
+  '/criar': typeof CriarRoute
+  '/perfil': typeof PerfilRoute
+  '/persona': typeof PersonaRoute
+  '/upgrades': typeof UpgradesRoute
+  '/avatar/$avatarId': typeof AvatarAvatarIdRoute
+  '/chat/$avatarId': typeof ChatAvatarIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conversas': typeof ConversasRoute
+  '/criar': typeof CriarRoute
+  '/perfil': typeof PerfilRoute
+  '/persona': typeof PersonaRoute
+  '/upgrades': typeof UpgradesRoute
+  '/avatar/$avatarId': typeof AvatarAvatarIdRoute
+  '/chat/$avatarId': typeof ChatAvatarIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conversas': typeof ConversasRoute
+  '/criar': typeof CriarRoute
+  '/perfil': typeof PerfilRoute
+  '/persona': typeof PersonaRoute
+  '/upgrades': typeof UpgradesRoute
+  '/avatar/$avatarId': typeof AvatarAvatarIdRoute
+  '/chat/$avatarId': typeof ChatAvatarIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/conversas'
+    | '/criar'
+    | '/perfil'
+    | '/persona'
+    | '/upgrades'
+    | '/avatar/$avatarId'
+    | '/chat/$avatarId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/conversas'
+    | '/criar'
+    | '/perfil'
+    | '/persona'
+    | '/upgrades'
+    | '/avatar/$avatarId'
+    | '/chat/$avatarId'
+  id:
+    | '__root__'
+    | '/'
+    | '/conversas'
+    | '/criar'
+    | '/perfil'
+    | '/persona'
+    | '/upgrades'
+    | '/avatar/$avatarId'
+    | '/chat/$avatarId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConversasRoute: typeof ConversasRoute
+  CriarRoute: typeof CriarRoute
+  PerfilRoute: typeof PerfilRoute
+  PersonaRoute: typeof PersonaRoute
+  UpgradesRoute: typeof UpgradesRoute
+  AvatarAvatarIdRoute: typeof AvatarAvatarIdRoute
+  ChatAvatarIdRoute: typeof ChatAvatarIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conversas': {
+      id: '/conversas'
+      path: '/conversas'
+      fullPath: '/conversas'
+      preLoaderRoute: typeof ConversasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/criar': {
+      id: '/criar'
+      path: '/criar'
+      fullPath: '/criar'
+      preLoaderRoute: typeof CriarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/persona': {
+      id: '/persona'
+      path: '/persona'
+      fullPath: '/persona'
+      preLoaderRoute: typeof PersonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upgrades': {
+      id: '/upgrades'
+      path: '/upgrades'
+      fullPath: '/upgrades'
+      preLoaderRoute: typeof UpgradesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/avatar/$avatarId': {
+      id: '/avatar/$avatarId'
+      path: '/avatar/$avatarId'
+      fullPath: '/avatar/$avatarId'
+      preLoaderRoute: typeof AvatarAvatarIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat/$avatarId': {
+      id: '/chat/$avatarId'
+      path: '/chat/$avatarId'
+      fullPath: '/chat/$avatarId'
+      preLoaderRoute: typeof ChatAvatarIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConversasRoute: ConversasRoute,
+  CriarRoute: CriarRoute,
+  PerfilRoute: PerfilRoute,
+  PersonaRoute: PersonaRoute,
+  UpgradesRoute: UpgradesRoute,
+  AvatarAvatarIdRoute: AvatarAvatarIdRoute,
+  ChatAvatarIdRoute: ChatAvatarIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
