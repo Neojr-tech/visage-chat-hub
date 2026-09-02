@@ -24,7 +24,7 @@ export const openAICompatibleEngine: AIEngine = {
       res = await fetch(`${baseUrl}/chat/completions`, {
         method: "POST",
         headers,
-        signal,
+        signal: signal ?? null,
         body: JSON.stringify({
           model: settings.model,
           temperature: settings.temperature,

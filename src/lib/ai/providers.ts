@@ -44,14 +44,14 @@ export const PROVIDERS: ProviderPreset[] = [
 ];
 
 export function getProvider(id: ProviderId): ProviderPreset {
-  return PROVIDERS.find((p) => p.id === id) ?? PROVIDERS[0];
+  return PROVIDERS.find((p) => p.id === id) ?? PROVIDERS[0]!;
 }
 
 export const DEFAULT_SETTINGS: AISettings = {
   provider: "openrouter",
-  baseUrl: PROVIDERS[0].baseUrl,
+  baseUrl: PROVIDERS[0]!.baseUrl,
   apiKey: "",
-  model: PROVIDERS[0].models[0],
+  model: PROVIDERS[0]!.models[0]!,
   temperature: 0.8,
   systemPrompt:
     "Você é um avatar de IA carismático. Responda sempre em português do Brasil, de forma breve, calorosa e com personalidade.",
