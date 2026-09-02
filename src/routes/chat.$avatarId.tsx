@@ -72,7 +72,8 @@ function ChatScreen() {
   const [mediaOpen, setMediaOpen] = useState(false);
   const [plusOpen, setPlusOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const connected = isConfigured(settings) && (settings.apiKey.trim() !== "" || settings.provider === "ollama" || settings.provider === "custom");
 
   useEffect(() => {
     const stored = loadThread(avatar.id);
@@ -85,7 +86,8 @@ function ChatScreen() {
 
   useEffect(() => {
     if (messages.length) saveThread(avatar.id, messages);
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = scrollerRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [messages, avatar.id]);
 
   const send = async () => {
@@ -162,7 +164,7 @@ function ChatScreen() {
         <div className="min-w-0">
           <h1 className="truncate text-base font-semibold">{avatar.name}</h1>
           <p className="truncate text-xs text-muted-foreground">
-            {isConfigured(settings) ? `online · ${settings.model}` : "sem provedor conectado"}
+            {connected ? `online · ${settings.model}` : "sem provedor conectado"}
           </p>
         </div>
         <Button
@@ -176,12 +178,11 @@ function ChatScreen() {
       </header>
 
       {/* Messages */}
-      <div className="scroll-slim relative z-10 flex-1 overflow-y-auto px-4 py-4">
+      <div ref={scrollerRef} className="scroll-slim relative z-10 flex-1 overflow-y-auto px-4 py-4">
         <div className="mx-auto flex max-w-2xl flex-col gap-3">
           {messages.map((m) => (
             <Bubble key={m.id} message={m} />
           ))}
-          <div ref={bottomRef} />
         </div>
       </div>
 
