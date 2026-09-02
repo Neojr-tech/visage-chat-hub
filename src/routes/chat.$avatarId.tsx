@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import {
   ArrowLeft,
-  Ban,
   Mic,
   Plus,
   SendHorizonal,
@@ -306,5 +305,3 @@ function Bubble({ message }: { message: ChatMessage }) {
     </div>
   );
 }
-
-export { Ban };
