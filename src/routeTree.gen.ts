@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AvatarAvatarIdRouteImport } from './routes/avatar.$avatarId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AvatarAvatarIdRoute = AvatarAvatarIdRouteImport.update({
+  id: '/avatar/$avatarId',
+  path: '/avatar/$avatarId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/avatar/$avatarId': typeof AvatarAvatarIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/avatar/$avatarId': typeof AvatarAvatarIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/avatar/$avatarId': typeof AvatarAvatarIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/avatar/$avatarId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/avatar/$avatarId'
+  id: '__root__' | '/' | '/avatar/$avatarId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvatarAvatarIdRoute: typeof AvatarAvatarIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/avatar/$avatarId': {
+      id: '/avatar/$avatarId'
+      path: '/avatar/$avatarId'
+      fullPath: '/avatar/$avatarId'
+      preLoaderRoute: typeof AvatarAvatarIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvatarAvatarIdRoute: AvatarAvatarIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
